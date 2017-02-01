@@ -10,8 +10,8 @@ public class Main {
         int num2 = scan.nextInt();
         double num3 = scan.nextDouble();
         
-        System.out.println(String.format("%-19s", product1) + " " + String.format("%19s", product2) + " " + 
-            String.format("%09d", num1) + " " + String.format("%9s", String.valueOf(num2)) + " " + 
-            String.format("%9s", String.format("%.3f", num3)));
+        String output = String.format("%-19s %19s %09d %9s %9.3f", 
+            product1, product2, num1, num2, num3);
+        System.out.println(output);
     }
 }

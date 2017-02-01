@@ -1,40 +1,31 @@
 import java.util.Scanner;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.io.IOException;
+import java.util.TreeMap;
+import java.util.Iterator;
 
 public class Main {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
-        ArrayList<String> numberList_String = new ArrayList<String>();
-        ArrayList<Short> numberList = new ArrayList<Short>();
+        TreeMap<Short, String> numberMap = new TreeMap<Short, String>();
         
         while(scan.hasNext()) {
             String number = scan.next();
-            numberList_String.add(number);
-            numberList.add(parseNumber(number));
+            numberMap.put(parseNumber(number), number);
         }
         
-        Collections.sort(numberList);
-        
-        for(int i = 0; i < numberList.size(); i++) {
-            for(int j = 0; j < numberList_String.size(); j++) {
-                if(numberList.get(i) == parseNumber(numberList_String.get(j))) {
-                    System.out.print(numberList_String.get(j));
-                    break;
-                }
-            }
-            if(i == numberList.size() - 1) System.out.println();
-            else System.out.print(" ");
+        Iterator<Short> it = numberMap.keySet().iterator();
+        while (it.hasNext()) {
+            Short key = it.next();
+            if(it.hasNext()) System.out.print(numberMap.get(key) + " ");
+            else System.out.println(numberMap.get(key));
         }
     }
     
     static short parseNumber(String number) {
         short parsedNumber = 0;
-        try {
-            parsedNumber = Short.parseShort(number);
-        } catch(Exception e) {
+        if(number.startsWith("0x")) {
             parsedNumber = (short)(Integer.parseInt(number.substring(2), 16));
+        } else {
+            parsedNumber = (short)(Integer.parseInt(number));
         }
         return parsedNumber;
     }
