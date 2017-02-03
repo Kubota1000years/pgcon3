@@ -12,12 +12,13 @@ public class Main {
             numberMap.put(parseNumber(number), number);
         }
         
-        Iterator<Short> it = numberMap.keySet().iterator();
-        while (it.hasNext()) {
-            Short key = it.next();
-            if(it.hasNext()) System.out.print(numberMap.get(key) + " ");
-            else System.out.println(numberMap.get(key));
+        for (Short key : numberMap.keySet()) {
+            System.out.print(numberMap.get(key));
+            if(key != numberMap.lastKey()) {
+                System.out.print(" ");
+            }
         }
+        System.out.println();
     }
     
     static short parseNumber(String number) {
