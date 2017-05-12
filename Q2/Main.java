@@ -11,11 +11,10 @@ public class Main {
             numberMap.put(parseNumber(number), number);
         }
         
+        Short lKey = numberMap.lastKey();
         for (Short key : numberMap.keySet()) {
             System.out.print(numberMap.get(key));
-            if(key != numberMap.lastKey()) {
-                System.out.print(" ");
-            }
+            if(key != lKey) System.out.print(" ");
         }
         System.out.println();
     }
