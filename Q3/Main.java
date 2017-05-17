@@ -16,39 +16,19 @@ public class Main {
         char[] charCodeList = str.toCharArray();
         Arrays.sort(charCodeList);
         
-        int[][] digit = new int[M][S];
-        Long powNumber;
-        char[][] answer = new char[M][S];
+        int[] digit = new int[S];
+        long powNumber;
         
         for(int i = 0; i < M; i++) {
-            boolean isMaxLongValue = false;
-            if(i + N >= 0) {
-                powNumber = i + N;
-            } else {
-                //Long値の最大値を超えないよう、Mの最大値である1000を減算
-                powNumber = (-1000) + i + N;
-                isMaxLongValue = true;
-            }
+            powNumber = i + N - 1;
+            
             for(int j = 0; j < S; j++) {
-                double pow = Math.pow(charCodeList.length, S - j - 1);
-                long lPow = (long)pow;
-                while(powNumber > lPow) {
-                    digit[i][j]++;
-                    powNumber -= lPow;
-                    
-                    if(isMaxLongValue) {
-                        powNumber += 1000;
-                        isMaxLongValue = false;
-                    }
-                }
-                
-                answer[i][j] = charCodeList[digit[i][j]];
+                digit[j] = (int)(powNumber % charCodeList.length);
+                powNumber /= charCodeList.length;
             }
-        }
-        
-        for(int i = 0; i < M; i++) {
-            for(int j = 0; j < S; j++) {
-                System.out.print(answer[i][j]);
+            
+            for(int j = S-1; j >= 0; j--) {
+                System.out.print(charCodeList[digit[j]]);
             }
             System.out.println();
         }
