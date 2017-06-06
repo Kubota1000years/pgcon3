@@ -22,12 +22,12 @@ public class Main {
         for(int i = 0; i < M; i++) {
             powNumber = i + N - 1;
             
-            for(int j = 0; j < S; j++) {
+            for(int j = S-1; j >= 0; j--) {
                 digit[j] = (int)(powNumber % charCodeList.length);
                 powNumber /= charCodeList.length;
             }
             
-            for(int j = S-1; j >= 0; j--) {
+            for(int j = 0; j < S; j++) {
                 System.out.print(charCodeList[digit[j]]);
             }
             System.out.println();
