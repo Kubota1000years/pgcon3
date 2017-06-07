@@ -1,6 +1,7 @@
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.IOException;
+import java.util.List;
 import java.util.ArrayList;
 
 public class Main {
@@ -15,10 +16,9 @@ public class Main {
         line = br.readLine();
         int M = Integer.parseInt(line);
         
-        ArrayList<Integer> answerList = new ArrayList<Integer>();
-        
         for(int i = 0; i < M; i++) {
             String searchWord = br.readLine();
+            List<Integer> answerList = new ArrayList<>();
             for(int j = 0; j < N; j++) {
                 if(isMatched(searchWord, compareWord[j])) {
                     answerList.add(j+1);
@@ -35,7 +35,6 @@ public class Main {
                     if(j != listSize-1) System.out.print(answer + " ");
                     else System.out.println(answer);
                 }
-                answerList.clear();
             }
         }
     }
